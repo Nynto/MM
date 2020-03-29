@@ -20,18 +20,19 @@ namespace MovieMakers.DataAccess.Data
 
         public DbSet<StartTime> Times { get; set; }
 
-
         public DbSet<AgeGroup> AgeGroups { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Company> Companies { get; set; }
 
-        public DbSet<Hall> Hall { get; set; }
+        public DbSet<Hall> Halls { get; set; }
+        public DbSet<Seat> Seats { get; set; }
+
+        public DbSet<LostAndFound> LostAndFounds { get; set; }
 
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-
     }
 
 

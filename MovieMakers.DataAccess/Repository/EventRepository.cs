@@ -26,9 +26,6 @@ namespace MovieMakers.DataAccess.Repository
             objFromDB.HallId = eEvent.HallId;
             objFromDB.Date = eEvent.Date;
             objFromDB.MovieId = eEvent.MovieId;
-            
-
-
         }
     }
 }

@@ -10,8 +10,8 @@ namespace MovieMakers.DataAccess.Repository.IRepository
         public IStartTimeRepository StartTime { get; set; }
         public IApplicationUserRepository ApplicationUser { get; set; }
 
-
         public IHallRepository Hall { get; set; }
+        public ILostAndFoundRepository LostAndFound { get; set; }
 
         public IAgeGroupRepository AgeGroup { get; }
         

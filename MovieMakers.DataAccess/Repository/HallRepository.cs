@@ -16,12 +16,11 @@ namespace MovieMakers.DataAccess.Repository
 
         public void Update(Hall hall)
         {
-            var objFromDB = _db.Hall.FirstOrDefault(s => s.Id == hall.Id);
+            var objFromDB = _db.Halls.FirstOrDefault(s => s.Id == hall.Id);
             if (objFromDB != null)
             {
                 objFromDB.Name = hall.Name;
             }
-
         }
     }
 }

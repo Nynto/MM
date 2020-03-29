@@ -70,6 +70,7 @@ namespace BulkyBook.Areas.Customer.Controllers
                          GetFirstOrDefault(u => u.Id == id, includeProperties:"Genre,AgeGroup");
             var eventFromDb = _unitOfWork.Event.
                     GetFirstOrDefault(u => u.MovieId == id, includeProperties:"Movie,Hall");
+            var events = eventList.Where(m => m.MovieId.Equals(id)).OrderBy(e => e.Date).ThenBy(e => e.StartTime);
             
             ShoppingCart cartObj = new ShoppingCart()
             {
@@ -77,7 +78,7 @@ namespace BulkyBook.Areas.Customer.Controllers
                 // Movie = movieFromDb
             
             };
-            return View(eventFromDb);
+            return View(events);
         }
 
         [HttpPost]
