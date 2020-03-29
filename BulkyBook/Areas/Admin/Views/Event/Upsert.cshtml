@@ -1,0 +1,122 @@
+@model MovieMakers.Models.ViewModels.EventVm
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Create Event";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row p-3 border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             @if (Model.Event.Id != 0)
+             {
+                 //edit
+                 title = "Edit Event";
+                 <input type="hidden" asp-for="Event.Id"/>
+             }
+            <div class="col-12 border-bottom">
+                <h2 class="text-primary">@title</h2>
+            </div>
+            <div class="col-8 pt-4">
+                <div class="form-group row">
+                    <div class="col-4">
+                        Movie
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(m => m.Event.MovieId, Model.MovieList,
+                            "-Select a Movie",
+                            new {@class = "form-control"})
+                        <span asp-validation-for="Event.MovieId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Event.Date"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Event.Date" id="datepicker" class="form-control"/>
+                        <span asp-validation-for="Event.Date" class="text-danger"></span>
+                    </div>
+                </div>
+                
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Event.StartTime"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Event.StartTime" class="form-control"/>
+                        <span asp-validation-for="Event.StartTime" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        Hall
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(m => m.Event.HallId, Model.HallList,
+                            "-Select an Hall",
+                            new {@class = "form-control"})
+                        <span asp-validation-for="Event.HallId" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        @if (Model.Event.Id != 0)
+                        {
+                            <partial name="_EditAndBackToListButton" model="Model.Event.Id"/>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control">Create</button>
+                                </div>
+                                <div class="col">
+                                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="https://cdn.tiny.cloud/1/z1xyjesb7xsp5020yis7s8icicxtvop2qkb30o5plr5iiwoi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+    tinymce.init({
+    selector: 'textarea',
+    
+    plugins:'lists',
+    menubar:'file edit format'
+    
+    });
+    
+    function validateImput() {
+        if(document.getElementById("uploadBox").value == ""){
+            swal("Error", "Please select an image", "error");
+            return false;
+        }
+        return true;
+      
+    }
+    </script>
+        
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>
+      $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
+      </script>
+
+}

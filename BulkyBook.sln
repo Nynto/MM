@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkyBook", "BulkyBook\BulkyBook.csproj", "{3C251760-9940-4088-B4B4-C04D1C596E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieMakers.DataAccess", "MovieMakers.DataAccess\MovieMakers.DataAccess.csproj", "{E4801CB8-5B91-4EE2-896A-B88AFB298489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieMakers.Models", "MovieMakers.Models\MovieMakers.Models.csproj", "{34BE9EE0-397B-46C7-BB7E-1BC3FE4112B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieMakers.Utility", "MovieMakers.Utility\MovieMakers.Utility.csproj", "{0C2C9B7F-9B14-4C74-8227-51F3F2A8595F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C251760-9940-4088-B4B4-C04D1C596E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C251760-9940-4088-B4B4-C04D1C596E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C251760-9940-4088-B4B4-C04D1C596E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C251760-9940-4088-B4B4-C04D1C596E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4801CB8-5B91-4EE2-896A-B88AFB298489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4801CB8-5B91-4EE2-896A-B88AFB298489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4801CB8-5B91-4EE2-896A-B88AFB298489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4801CB8-5B91-4EE2-896A-B88AFB298489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34BE9EE0-397B-46C7-BB7E-1BC3FE4112B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34BE9EE0-397B-46C7-BB7E-1BC3FE4112B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34BE9EE0-397B-46C7-BB7E-1BC3FE4112B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BE9EE0-397B-46C7-BB7E-1BC3FE4112B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2C9B7F-9B14-4C74-8227-51F3F2A8595F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2C9B7F-9B14-4C74-8227-51F3F2A8595F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2C9B7F-9B14-4C74-8227-51F3F2A8595F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2C9B7F-9B14-4C74-8227-51F3F2A8595F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
