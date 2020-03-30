@@ -1,8 +1,8 @@
-@model Hall
+@model Row
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var title = "Create Hall";
+    var title = "Create Row";
 }
 <div class="container">
 <form method="post">
@@ -11,7 +11,7 @@
         @if (Model.Id!=0)
         {
             //edit
-            title = "Edit Hall";
+            title = "Edit Row";
         }
         <div class="col-12 border-bottom">
             <h2 class="text-primary">@title</h2>
@@ -19,28 +19,31 @@
         <div class="col-8 pt-4">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Name"></label>
+                    <label asp-for="Hall"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <input asp-for="HallId" class="form-control" readonly />
+                    <span asp-validation-for="HallId" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="NumberOfRows"></label>
+                    <label asp-for="Number"></label>
                 </div>
                 <div class="col-8">
-                    @if (Model.Id != 0)
-                    {
-                        <input asp-for="NumberOfRows" class="form-control" readonly />
-                    }
-                    else
-                    {
-                        <input asp-for="NumberOfRows" class="form-control" />
-                    }
-                    <span asp-validation-for="NumberOfRows" class="text-danger"></span>
+                    <input asp-for="Number" class="form-control" readonly />
+                    <span asp-validation-for="Number" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="NumberOfSeats"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="NumberOfSeats" class="form-control" />
+                    <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
                 </div>
             </div>
 

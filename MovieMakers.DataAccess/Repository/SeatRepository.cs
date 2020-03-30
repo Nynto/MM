@@ -19,8 +19,7 @@ namespace MovieMakers.DataAccess.Repository
             var objFromDB = _db.Seats.FirstOrDefault(s => s.Id == seat.Id);
             if (objFromDB != null)
             {
-                objFromDB.HallId = seat.HallId;
-                objFromDB.Row = seat.Row;
+                objFromDB.RowId = seat.RowId;
                 objFromDB.Number = seat.Number;
             }
         }

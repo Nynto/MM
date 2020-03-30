@@ -1,18 +1,17 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieMakers.Models
 {
-    public class Hall
+    public class Reservation
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public int EventId { get; set; }
 
-        [Display(Name = "Number of Rows")]
         [Required]
-        [Range(1, 15)]
-        public int NumberOfRows { get; set; }
+        public int SeatId { get; set; }
     }
 }

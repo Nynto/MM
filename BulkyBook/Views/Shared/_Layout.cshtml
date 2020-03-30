@@ -33,14 +33,23 @@
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Movie Management
+                                Movies
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item " asp-area="Admin" asp-controller="Genre" asp-action="Index">Genres</a>
                                 <a class="dropdown-item " asp-area="Admin" asp-controller="AgeGroup" asp-action="Index">Age Groups</a>
                                 <a class="dropdown-item " asp-area="Admin" asp-controller="Movie" asp-action="Index">Movies</a>
                                 <a class="dropdown-item " asp-area="Admin" asp-controller="Event" asp-action="Index">Events</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Halls
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item " asp-area="Admin" asp-controller="Hall" asp-action="Index">Halls</a>
+                                <a class="dropdown-item " asp-area="Admin" asp-controller="Row" asp-action="Index">Rows</a>
                             </div>
                         </li>
                     }
@@ -49,7 +58,7 @@
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Account Management
+                                Accounts
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item " asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
@@ -62,11 +71,11 @@
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Customer Service
+                                Service
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="LostAndFound" asp-action="Index">Lost and Found</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="LostAndFound" asp-action="Index">Reservations</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Reservations</a>
                             </div>
                         </li>
                     }

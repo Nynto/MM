@@ -7,22 +7,21 @@ $(document).ready(function(){
 function loadDataTable(){
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Admin/Hall/GetAll"
+            "url": "/Admin/Row/GetAll"
         },
         "columns":[
-            {"data":"name"},
-            {"data":"numberOfRows"},
+            {"data":"hall.name"},
+            {"data":"number"},
+            {"data":"numberOfSeats"},
             {
                 "data":"id",
                 "render": function(data){
                     return`
                                     <div class="text-center">
-                    <a href="/Admin/Hall/Upsert/${data}" class="btn btn-success text-white" style="cursor:pointer">
+                    <a href="/Admin/Row/Upsert/${data}" class="btn btn-success text-white" style="cursor:pointer">
                         <i class="fas fa-edit"></i> 
                     </a>
-                        <a  onclick=Delete("/Admin/Hall/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer">
-                            <i class="fas fa-trash-alt"></i> 
-                        </a>
+                        
                 </div>
                     
                     `;

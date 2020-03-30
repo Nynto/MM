@@ -1,4 +1,5 @@
 @model IEnumerable<Event>
+@using MovieMakers.Utility
 
 <div class="container backgroundWhite">
     <div class="card">
@@ -24,6 +25,14 @@
                                         <b>@item.Hall.Name</b><br />
                                         @item.Date<br />
                                         <i class="fas fa-clock"></i> @item.StartTime
+                                        @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_FO_Employee))
+                                        {
+                                            var totalSeats = 120;
+                                            var takenSeats = 37;
+                                            var availableSeats = totalSeats - takenSeats;
+
+                                            <br /><b>@availableSeats seats left</b>
+                                        }
                                     </label>
                                 </a>
                             }
@@ -53,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                        <img src="@Model.First().Movie.ImageUrl" width="100%" class="rounded"/>
+                        <img src="@Model.First().Movie.ImageUrl" width="100%" class="rounded" />
                     </div>
                 </div>
             </div>

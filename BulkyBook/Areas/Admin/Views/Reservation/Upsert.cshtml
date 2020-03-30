@@ -1,17 +1,18 @@
-@model Hall
+@model MovieMakers.Models.ViewModels.ReservationVm
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var title = "Create Hall";
+    var title = "Make Reservation";
 }
 <div class="container">
 <form method="post">
     <div class="row p-3 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Id!=0)
+        @if (Model.Reservation.Id != 0)
         {
             //edit
-            title = "Edit Hall";
+            title = "Change Reservation";
+            <input type="hidden" asp-for="Reservation.Id" />
         }
         <div class="col-12 border-bottom">
             <h2 class="text-primary">@title</h2>
@@ -19,36 +20,33 @@
         <div class="col-8 pt-4">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Name"></label>
+                    Event
                 </div>
                 <div class="col-8">
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    @Html.DropDownListFor(m => m.Reservation.EventId, Model.EventList,
+                        "-Select an Event",
+                        new { @class = "form-control" })
+                    <span asp-validation-for="Reservation.EventId" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="NumberOfRows"></label>
+                    Seat
                 </div>
                 <div class="col-8">
-                    @if (Model.Id != 0)
-                    {
-                        <input asp-for="NumberOfRows" class="form-control" readonly />
-                    }
-                    else
-                    {
-                        <input asp-for="NumberOfRows" class="form-control" />
-                    }
-                    <span asp-validation-for="NumberOfRows" class="text-danger"></span>
+                    @Html.DropDownListFor(m => m.Reservation.SeatId, Model.SeatList,
+                        "-Select a Seat",
+                        new { @class = "form-control" })
+                    <span asp-validation-for="Reservation.SeatId" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-8 offset-4">
-                    @if (Model.Id != 0)
+                    @if (Model.Reservation.Id != 0)
                     {
-                        <partial name="_EditAndBackToListButton" model="Model.Id" />
+                        <partial name="_EditAndBackToListButton" model="Model.Reservation.Id" />
                     }
                     else
                     {

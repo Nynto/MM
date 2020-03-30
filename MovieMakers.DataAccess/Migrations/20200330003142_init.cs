@@ -67,18 +67,33 @@ namespace MovieMakers.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hall",
+                name: "Halls",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
-                    Rows = table.Column<string>(nullable: true),
-                    Chairs = table.Column<string>(nullable: true)
+                    NumberOfRows = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hall", x => x.Id);
+                    table.PrimaryKey("PK_Halls", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LostAndFounds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Time = table.Column<DateTime>(nullable: false),
+                    Location = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    Solved = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LostAndFounds", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,6 +199,48 @@ namespace MovieMakers.DataAccess.Migrations
                         name: "FK_Movies_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rows",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HallId = table.Column<int>(nullable: false),
+                    Number = table.Column<int>(nullable: false),
+                    NumberOfSeats = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rows", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rows_Halls_HallId",
+                        column: x => x.HallId,
+                        principalTable: "Halls",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Seats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HallId = table.Column<int>(nullable: false),
+                    Row = table.Column<int>(nullable: false),
+                    Number = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seats", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Seats_Halls_HallId",
+                        column: x => x.HallId,
+                        principalTable: "Halls",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -320,9 +377,9 @@ namespace MovieMakers.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_Events", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Events_Hall_HallId",
+                        name: "FK_Events_Halls_HallId",
                         column: x => x.HallId,
-                        principalTable: "Hall",
+                        principalTable: "Halls",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -469,6 +526,16 @@ namespace MovieMakers.DataAccess.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Rows_HallId",
+                table: "Rows",
+                column: "HallId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seats_HallId",
+                table: "Seats",
+                column: "HallId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCarts_ApplicationUserId",
                 table: "ShoppingCarts",
                 column: "ApplicationUserId");
@@ -497,7 +564,16 @@ namespace MovieMakers.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "LostAndFounds");
+
+            migrationBuilder.DropTable(
                 name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "Rows");
+
+            migrationBuilder.DropTable(
+                name: "Seats");
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts");
@@ -518,7 +594,7 @@ namespace MovieMakers.DataAccess.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Hall");
+                name: "Halls");
 
             migrationBuilder.DropTable(
                 name: "Movies");

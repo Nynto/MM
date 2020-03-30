@@ -21,7 +21,7 @@ namespace MovieMakers.DataAccess.Repository.IRepository
             string includeProperties = null
         );
 
-        void Add(T entity);
+        T Add(T entity);
         void Remove(int id);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);

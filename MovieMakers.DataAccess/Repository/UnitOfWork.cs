@@ -15,6 +15,9 @@ namespace MovieMakers.DataAccess.Repository
             Genre = new GenreRepository(_db);
             Event = new EventRepository(_db);
             Hall = new HallRepository(_db);
+            Row = new RowRepository(_db);
+            Seat = new SeatRepository(_db);
+            Reservation = new ReservationRepository(_db);
             LostAndFound = new LostAndFoundRepository(_db);
             AgeGroup = new AgeGroupRepository(_db);
             Movie = new MovieRepository(_db);
@@ -30,8 +33,14 @@ namespace MovieMakers.DataAccess.Repository
         public IGenreRepository Genre { get; set; }
         public IEventRepository Event { get; set; }
         public IStartTimeRepository StartTime { get; set; }
+
         public IHallRepository Hall { get; set; }
+        public IRowRepository Row { get; set; }
+        public ISeatRepository Seat { get; set; }
+        public IReservationRepository Reservation { get; set; }
+
         public ILostAndFoundRepository LostAndFound { get; set; }
+
         public IApplicationUserRepository ApplicationUser { get; set; }
 
         public ISP_Call SP_Call { get; private set; }

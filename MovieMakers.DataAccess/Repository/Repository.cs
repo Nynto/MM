@@ -70,9 +70,11 @@ namespace MovieMakers.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public void Add(T entity)
+        public T Add(T entity)
         {
             dbSet.Add(entity);
+
+            return entity;
         }
 
         public void Remove(int id)

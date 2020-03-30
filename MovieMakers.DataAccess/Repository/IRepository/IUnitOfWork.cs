@@ -11,6 +11,10 @@ namespace MovieMakers.DataAccess.Repository.IRepository
         public IApplicationUserRepository ApplicationUser { get; set; }
 
         public IHallRepository Hall { get; set; }
+        public IRowRepository Row { get; set; }
+        public ISeatRepository Seat { get; set; }
+        public IReservationRepository Reservation { get; set; }
+
         public ILostAndFoundRepository LostAndFound { get; set; }
 
         public IAgeGroupRepository AgeGroup { get; }

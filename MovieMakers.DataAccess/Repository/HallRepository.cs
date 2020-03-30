@@ -20,6 +20,7 @@ namespace MovieMakers.DataAccess.Repository
             if (objFromDB != null)
             {
                 objFromDB.Name = hall.Name;
+                objFromDB.NumberOfRows = hall.NumberOfRows;
             }
         }
     }

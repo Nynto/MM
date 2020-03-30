@@ -330,6 +330,9 @@ namespace MovieMakers.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("NumberOfRows")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Halls");
@@ -498,7 +501,25 @@ namespace MovieMakers.DataAccess.Migrations
                     b.ToTable("OrderHeaders");
                 });
 
-            modelBuilder.Entity("MovieMakers.Models.Seat", b =>
+            modelBuilder.Entity("MovieMakers.Models.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("MovieMakers.Models.Row", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -511,12 +532,32 @@ namespace MovieMakers.DataAccess.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<int>("Row")
+                    b.Property<int>("NumberOfSeats")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HallId");
+
+                    b.ToTable("Rows");
+                });
+
+            modelBuilder.Entity("MovieMakers.Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RowId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RowId");
 
                     b.ToTable("Seats");
                 });
@@ -696,11 +737,20 @@ namespace MovieMakers.DataAccess.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
-            modelBuilder.Entity("MovieMakers.Models.Seat", b =>
+            modelBuilder.Entity("MovieMakers.Models.Row", b =>
                 {
                     b.HasOne("MovieMakers.Models.Hall", "Hall")
                         .WithMany()
                         .HasForeignKey("HallId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MovieMakers.Models.Seat", b =>
+                {
+                    b.HasOne("MovieMakers.Models.Row", "Row")
+                        .WithMany()
+                        .HasForeignKey("RowId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

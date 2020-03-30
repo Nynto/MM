@@ -3,21 +3,18 @@ using MovieMakers.DataAccess.Repository.IRepository;
 using MovieMakers.Models;
 using Microsoft.AspNetCore.Mvc;
 using MovieMakers.Utility;
-using MovieMakers.DataAccess.Data;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.Role_Admin)]
-    public class HallController : Controller
+    public class RowController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ApplicationDbContext _db;
 
-        public HallController(IUnitOfWork unitOfWork, ApplicationDbContext db)
+        public RowController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _db = db;
         }
         // GET
         public IActionResult Index()
@@ -27,54 +24,55 @@ namespace BulkyBook.Areas.Admin.Controllers
         
         public IActionResult Upsert(int? id)
         {
-            Hall hall = new Hall();
+            Row row = new Row();
             if (id == null)
             {
-                return View(hall);
+                return View(row);
             }
 
-            hall = _unitOfWork.Hall.Get(id.GetValueOrDefault());
-            if (hall == null)
+            row = _unitOfWork.Row.Get(id.GetValueOrDefault());
+            if (row == null)
             {
                 return NotFound();
             }
-            return View(hall);
+            return View(row);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Hall hall)
+        public IActionResult Upsert(Row row)
         {
             if (ModelState.IsValid)
             {
-                if (hall.Id == 0)
+                if (row.Id == 0)
                 {
-                    _unitOfWork.Hall.Add(hall);
-                    _unitOfWork.Save();
+                    _unitOfWork.Row.Add(row);
+                }
+                else
+                {
+                    _unitOfWork.Row.Update(row);
+
+                    var seatsToBeRemoved = _unitOfWork.Seat.GetAll(s => s.RowId == row.Id);
+                    _unitOfWork.Seat.RemoveRange(seatsToBeRemoved);
 
                     var i = 1;
-                    while (i <= hall.NumberOfRows)
+                    while (i <= row.NumberOfSeats)
                     {
-                        Row row = new Row
+                        Seat seat = new Seat
                         {
-                            HallId = hall.Id,
-                            Number = i,
-                            NumberOfSeats = 1
+                            RowId = row.Id,
+                            Number = i
                         };
 
-                        _unitOfWork.Row.Add(row);
+                        _unitOfWork.Seat.Add(seat);
 
                         i++;
                     }
                 }
-                else
-                {
-                    _unitOfWork.Hall.Update(hall);
-                }
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(hall);
+            return View(row);
         }
         
         #region API CALLS
@@ -82,19 +80,19 @@ namespace BulkyBook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var allObj = _unitOfWork.Hall.GetAll();
+            var allObj = _unitOfWork.Row.GetAll(includeProperties: "Hall");
             return Json(new {data = allObj});
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var objFromDb = _unitOfWork.Hall.Get(id);
+            var objFromDb = _unitOfWork.Row.Get(id);
             if (objFromDb == null)
             {
                 return Json(new {success = false, message = "Error while deleting"});
             }
-            _unitOfWork.Hall.Remove(objFromDb);
+            _unitOfWork.Row.Remove(objFromDb);
             _unitOfWork.Save();
             return Json(new {success = true, message = "Delete Successful"});
         }
